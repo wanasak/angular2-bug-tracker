@@ -6,5 +6,5 @@ import { Component } from '@angular/core';
     templateUrl: 'bug-detail.component.html'
 })
 export class BugDetailComponent {
-    
+    private moduleId = "bugModal";
 }
