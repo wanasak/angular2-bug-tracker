@@ -7,6 +7,11 @@ import { Component } from '@angular/core';
         <div class="container">
         <router-outlet></router-outlet>
         </div>
-    `
+    `,
+    styles: [`
+        .container {
+            margin-top: 5px;
+        }
+    `]
 })
 export class AppComponent { }
