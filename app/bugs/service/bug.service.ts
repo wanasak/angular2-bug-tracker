@@ -3,6 +3,7 @@ import { Observable } from 'rxjs/Observable';
 
 import { FirebaseConfigService } from '../../core/service/firebase-config.service';
 
+import { Bug } from '../model/bug'
 
 @Injectable()
 export class BugService {
@@ -18,7 +19,8 @@ export class BugService {
     getAddedBugs(): Observable<any> {
         return Observable.create(obs => {
             this.bugDbRef.on('child_added', bug => {
-                obs.next(bug.val());
+                const newBug = bug.val() as Bug;
+                obs.next(newBug);
             }, err => {
                 obs.throw(err);
             })
