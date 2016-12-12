@@ -7,7 +7,8 @@ import { BugListComponent } from './bug-list/bug-list.component';
     imports: [
         RouterModule.forChild([
             { path: '', redirectTo: 'bugs', pathMatch: 'full' },
-            { path: 'bugs', component: BugListComponent }
+            { path: 'bugs', component: BugListComponent },
+            { path: '**', redirectTo: 'bugs' }
         ])
     ],
     exports: [ RouterModule ]
