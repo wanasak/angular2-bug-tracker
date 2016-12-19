@@ -26,4 +26,18 @@ export class BugService {
             })
         });
     }
+
+    addBug(bug: Bug) {
+        const newBugRef = this.bugDbRef.push();
+        newBugRef.set({
+            title: bug.title,
+            status: bug.status,
+            serverity: bug.serverity,
+            description: bug.description,
+            createdBy: 'Smudger',
+            createdDated: Date.now()
+        }, err => {
+            console.error("Unable to add bug to Firebase - ", err);
+        });
+    }
 }
