@@ -3,7 +3,7 @@ export class Bug {
         public id: string,
         public title: string,
         public status: number,
-        public serverity: number,
+        public severity: number,
         public description: string,
         public createdBy: string,
         public createdDate: number,

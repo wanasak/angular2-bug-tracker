@@ -16,7 +16,7 @@
                 <tr>
                     <th>Title</th>
                     <th>Status</th>
-                    <th>Serverity</th>
+                    <th>severity</th>
                     <th>Description</th>
                     <th>Logged By</th>
                     <th>Date</th>
@@ -26,7 +26,7 @@
                 <tr *ngFor="let bug of bugs" [attr.data-target]=" '#' + bugDetail.modalId" data-toggle="modal">
                     <td>{{ bug.title }}</td>
                     <td>{{ bug.status }}</td>
-                    <td>{{ bug.serverity }}</td>
+                    <td>{{ bug.severity }}</td>
                     <td>{{ bug.description }}</td>
                     <td>{{ bug.createdBy }}</td>
                     <td>{{ bug.createdDate }}</td>

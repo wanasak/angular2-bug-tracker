@@ -32,12 +32,13 @@ export class BugService {
         newBugRef.set({
             title: bug.title,
             status: bug.status,
-            serverity: bug.serverity,
+            severity: bug.severity,
             description: bug.description,
             createdBy: 'Smudger',
-            createdDated: Date.now()
-        }, err => {
-            console.error("Unable to add bug to Firebase - ", err);
-        });
+            createdDate: Date.now()
+        })
+        .catch(err => {
+            console.error("Unable to add a bug to Firebase - ", err);
+        });     
     }
 }
