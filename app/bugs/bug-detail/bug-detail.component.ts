@@ -54,6 +54,11 @@ export class BugDetailComponent implements OnInit {
         this.currentBug.severity = this.bugForm.value["severity"];
         this.currentBug.description = this.bugForm.value["description"];
         this.bugService.addBug(this.currentBug);
+        this.resetForm();
+    }
+
+    resetForm() {
+        this.bugForm.reset({ status: 4, severity: 4 });
     }
 
 }
