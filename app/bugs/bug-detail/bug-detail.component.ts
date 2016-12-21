@@ -36,7 +36,17 @@ export class BugDetailComponent implements OnInit {
         //     description: new FormControl(null, Validators.required),
         // })
         if (bug) {
-            this.currentBug = bug;
+            this.currentBug = new Bug(
+                bug.id,
+                bug.title,
+                bug.status,
+                bug.severity,
+                bug.description,
+                bug.createdBy,
+                bug.createdDate,
+                bug.updatedBy,
+                bug.updatedDate
+            );
         }
         this.bugForm = this.formBuilder.group({
             title: [this.currentBug.title, [Validators.required, forbiddenStringValidator(/smudger/i)]],
@@ -47,17 +57,24 @@ export class BugDetailComponent implements OnInit {
     }
 
     submitForm() {
-        console.log(this.bugForm);
-        this.addBug();
-    }
-
-    addBug() {
         this.currentBug.title = this.bugForm.value["title"];
         this.currentBug.status = this.bugForm.value["status"];
         this.currentBug.severity = this.bugForm.value["severity"];
         this.currentBug.description = this.bugForm.value["description"];
-        this.bugService.addBug(this.currentBug);
+        if (this.currentBug.id) {
+            this.updateBug();
+        } else {
+            this.addBug();
+        }
         this.resetForm();
+    }
+
+    addBug() {
+        this.bugService.addBug(this.currentBug);
+    }
+
+    updateBug() {
+        this.bugService.updateBug(this.currentBug);
     }
 
     resetForm() {
