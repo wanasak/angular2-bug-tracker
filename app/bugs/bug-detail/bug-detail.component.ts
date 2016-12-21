@@ -11,13 +11,13 @@ import { forbiddenStringValidator } from '../../shared/validator/forbidden-strin
     moduleId: module.id,
     selector: 'bug-detail',
     templateUrl: 'bug-detail.component.html',
-    styleUrls: [ 'bug-detail.component.css' ]
+    styleUrls: ['bug-detail.component.css']
 })
 export class BugDetailComponent implements OnInit {
-    
+
     private moduleId = "bugModal";
     private bugForm: FormGroup;
-    @Input() currentBug = new Bug(null, null, null, null, null, null, null, null, null);
+    @Input() currentBug = new Bug(null, null, 1, 1, null, null, null, null, null);
 
     constructor(
         private formBuilder: FormBuilder,
@@ -28,19 +28,22 @@ export class BugDetailComponent implements OnInit {
         this.configureForm();
     }
 
-    configureForm() {
+    configureForm(bug?: Bug) {
         // this.bugForm = new FormGroup({
         //     title: new FormControl(null, [Validators.required, forbiddenStringValidator(/smudger/i)]),
         //     status: new FormControl(1, Validators.required),
         //     severity: new FormControl(1, Validators.required),
         //     description: new FormControl(null, Validators.required),
         // })
-       this.bugForm = this.formBuilder.group({
-           title: [null, [Validators.required, forbiddenStringValidator(/smudger/i)]],
-           status: [1, Validators.required],
-           severity: [1, Validators.required],
-           description: [null, Validators.required]
-       });
+        if (bug) {
+            this.currentBug = bug;
+        }
+        this.bugForm = this.formBuilder.group({
+            title: [this.currentBug.title, [Validators.required, forbiddenStringValidator(/smudger/i)]],
+            status: [this.currentBug.status, Validators.required],
+            severity: [this.currentBug.severity, Validators.required],
+            description: [this.currentBug.description, Validators.required]
+        });
     }
 
     submitForm() {
@@ -58,7 +61,12 @@ export class BugDetailComponent implements OnInit {
     }
 
     resetForm() {
-        this.bugForm.reset({ status: 4, severity: 4 });
+        this.bugForm.reset({ status: 1, severity: 1 });
+        this.cleanBug();
+    }
+
+    cleanBug() {
+        this.currentBug = new Bug(null, null, 1, 1, null, null, null, null, null);
     }
 
 }
