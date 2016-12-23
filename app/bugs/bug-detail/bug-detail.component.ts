@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators, FormBuilder } from '@angular/forms';
 
 import { BugService } from '../service/bug.service';
@@ -22,7 +22,7 @@ export class BugDetailComponent implements OnInit {
     private severities = SEVERITY;
     private statusArr: string[] = [];
     private severityArr: string[] = [];
-    @Input() currentBug = new Bug(null, null, this.statuses.Logged, this.severities.Severe, null, null, null, null, null);
+    private currentBug = new Bug(null, null, this.statuses.Logged, this.severities.Severe, null, null, null, null, null);
 
     constructor(
         private formBuilder: FormBuilder,
